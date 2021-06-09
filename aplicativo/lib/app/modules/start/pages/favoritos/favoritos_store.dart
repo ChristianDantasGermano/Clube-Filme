@@ -1,0 +1,10 @@
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mobx/mobx.dart';
+
+part 'favoritos_store.g.dart';
+
+class FavoritosStore = _FavoritosStoreBase with _$FavoritosStore;
+
+abstract class _FavoritosStoreBase with Store {
+  String value = "Favoritos";
+}
