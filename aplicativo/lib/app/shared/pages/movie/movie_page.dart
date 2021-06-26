@@ -1,5 +1,6 @@
 import 'package:aplicativo/app/shared/components/circular_clipper_widget.dart';
 import 'package:aplicativo/app/shared/components/content_scroll_widget.dart';
+import 'package:aplicativo/app/shared/components/content_scroll_widget_details.dart';
 import 'package:aplicativo/app/shared/models/movie_model.dart';
 import 'package:aplicativo/app/shared/pages/movie/components/actor_view_widget.dart';
 import 'package:aplicativo/app/shared/pages/movie/components/comment_view_widget..dart';
@@ -44,7 +45,7 @@ class _MoviePageState extends State<MoviePage> {
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   IconButton(
                     padding: EdgeInsets.only(left: 30.0),
@@ -81,6 +82,24 @@ class _MoviePageState extends State<MoviePage> {
                   ),
                 ),
               ),
+              Positioned.fill(
+                bottom: 10.0,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: RawMaterialButton(
+                    padding: EdgeInsets.all(10.0),
+                    elevation: 12.0,
+                    onPressed: () => Navigator.pop(context),
+                    shape: CircleBorder(),
+                    fillColor: Colors.white,
+                    child: Icon(
+                      Icons.movie,
+                      size: 60.0,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
           Padding(
@@ -91,8 +110,18 @@ class _MoviePageState extends State<MoviePage> {
                 Text(
                   widget.movie.title.toUpperCase(),
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 30.0,
                     fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 10.0),
+                Text(
+                  '"tagline tagline tagline"',
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.normal,
+                    fontStyle: FontStyle.italic,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -246,12 +275,13 @@ class _MoviePageState extends State<MoviePage> {
               ],
             ),
           ),
-          ContentScrollWidget(
+          ContentScrollWidgetDetails(
             //Área de imagens do filme
             images: widget.movie.screenshots,
-            title: 'Imagens',
+            title: 'Produtoras',
             imageHeight: 200.0,
-            imageWidth: 250.0,
+            imageWidth: 200.0,
+            movie: widget.movie,
           ),
           CommentViewWidget(), //Área dos comentários
         ],
