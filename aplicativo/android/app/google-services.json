@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "896194379944",
+    "firebase_url": "https://clube-filme-default-rtdb.firebaseio.com",
+    "project_id": "clube-filme",
+    "storage_bucket": "clube-filme.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896194379944:android:466c9788ea6ed65dd4029d",
+        "android_client_info": {
+          "package_name": "br.clubefilme.aplicativo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896194379944-3sjnuh41jkk2nousmn1e97f69qus1qvu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.clubefilme.aplicativo",
+            "certificate_hash": "d95c168a50a4a098d445ec0e2c60aa81f758b3c2"
+          }
+        },
+        {
+          "client_id": "896194379944-325tkqcj6khfngnsuc5kq0nakkvrq10o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYu5wi1Cw_yBeAJwwuz1Vy-l0ByfX51nY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896194379944-325tkqcj6khfngnsuc5kq0nakkvrq10o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896194379944:android:94e26182aa50d2a2d4029d",
+        "android_client_info": {
+          "package_name": "com.example.server"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896194379944-325tkqcj6khfngnsuc5kq0nakkvrq10o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYu5wi1Cw_yBeAJwwuz1Vy-l0ByfX51nY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896194379944-325tkqcj6khfngnsuc5kq0nakkvrq10o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

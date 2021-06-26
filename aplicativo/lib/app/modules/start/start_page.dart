@@ -15,9 +15,7 @@ class StartPage extends StatefulWidget {
   StartPageState createState() => StartPageState();
 }
 
-class StartPageState extends State<StartPage> {
-  final StartStore controller = Modular.get();
-
+class StartPageState extends ModularState<StartPage, StartStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

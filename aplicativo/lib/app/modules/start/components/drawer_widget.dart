@@ -1,6 +1,11 @@
+import 'package:aplicativo/app/modules/start/start_store.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class DrawerWidget extends StatelessWidget {
+  final StartStore controller = Modular.get();
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -20,16 +25,16 @@ class DrawerWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: NetworkImage(
-                              'https://www.petz.com.br/blog/wp-content/uploads/2020/02/cat-sitting.jpg'),
+                          image: CachedNetworkImageProvider(
+                              controller.user()!.photoURL.toString()),
                           fit: BoxFit.fill)),
                 ),
                 Text(
-                  'Gato de Teste',
+                  controller.user()!.displayName.toString(),
                   style: TextStyle(fontSize: 22, color: Colors.white),
                 ),
                 Text(
-                  'djkdjkqwl@gmail.com',
+                  controller.user()!.email.toString(),
                   style: TextStyle(color: Colors.white),
                 )
               ],
@@ -64,7 +69,7 @@ class DrawerWidget extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          onTap: null,
+          onTap: controller.logoff,
         ),
       ],
     ));

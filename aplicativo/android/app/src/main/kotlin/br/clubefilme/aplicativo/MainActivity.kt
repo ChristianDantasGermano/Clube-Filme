@@ -1,4 +1,4 @@
-package com.example.aplicativo
+package br.clubefilme.aplicativo
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,3 +1,4 @@
+import 'package:aplicativo/app/modules/login/login_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class LoginPage extends StatefulWidget {
   LoginPageState createState() => LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class LoginPageState extends ModularState<LoginPage, LoginStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +43,7 @@ class LoginPageState extends State<LoginPage> {
                               fontSize: 40,
                               fontWeight: FontWeight.w200,
                               fontFamily: 'Roboto')),
-                      onPressed: () {
-                        Modular.to.navigate('/start');
-                      })),
+                      onPressed: controller.loginWithGoogle)),
               Padding(padding: EdgeInsets.all(25.0)),
               SizedBox(
                   width: 250,
