@@ -31,10 +31,14 @@ class Movies {
 
   Movies.fromJson(Map<String, dynamic> json) {
     id = json['id'].toString();
-    backdropPath = json['backdrop_path'];
+    if (json['backdrop_path'] != null) {
+      backdropPath = json['backdrop_path'];
+    } else {
+      backdropPath = "";
+    }
     posterPath = json['poster_path'];
-    genres=[];
-    for(var genero in json['genres']){
+    genres = [];
+    for (var genero in json['genres']) {
       genres.add(genero['name']);
     }
     imdbId = json['imdb_id'];

@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:server/RemoteRepositories/emAlta_remoteRepository.dart';
+import 'package:server/RemoteRepositories/sliders_remoteRepository.dart';
 import 'package:server/RemoteRepositories/synchronize_remoteRepository.dart';
-import 'package:server/Repositories/credits_repository.dart';
-import 'package:server/Repositories/movies_repository.dart';
-import 'package:server/Repositories/video_repository.dart';
+import 'package:server/RemoteRepositories/topCriticos_remoteRepository.dart';
 
 void main() {
   runApp(MyApp());
@@ -52,31 +52,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    //testarFirabase();
-    consumirAPI();
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-  
-  void testarFirabase() async {
+  void testarFirebase() async {
     await Firebase.initializeApp();
     CollectionReference data = FirebaseFirestore.instance.collection('Atores');
-    await data.add({
-      "Imagem" : "Sou bunito",
-      "Nome" : "Very muito bunito",
-      "Popularidade" : 8001
-    })
-    .then((value) => print("Foi-se"))
-    .catchError((error) => print('Vish kk'));
+    await data
+        .add({
+          "Imagem": "Sou bunito",
+          "Nome": "Very muito bunito",
+          "Popularidade": 8001
+        })
+        .then((value) => print("Foi-se"))
+        .catchError((error) => print('Vish kk'));
 
     data.snapshots().listen((event) {
       event.docs.forEach((element) {
@@ -90,6 +76,21 @@ class _MyHomePageState extends State<MyHomePage> {
   void consumirAPI() async {
     final synchronize = SynchronizeRemoteRepository();
     await synchronize.synchronize();
+  }
+
+  void emAlta() async {
+    final emAlta = EmAltaRemoteRepository();
+    await emAlta.preencherEmAlta();
+  }
+
+  void topCriticos() async {
+    final topC = TopCriticosRemoteRepository();
+    await topC.preencherTopCriticos();
+  }
+
+  void sliders() async {
+    final slider = SlidersRemoteRepository();
+    await slider.preencherSliders();
   }
 
   @override
@@ -125,22 +126,47 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Vezes que sincronizou com API:',
+          children: [
+            ElevatedButton(
+              onPressed: () => consumirAPI(),
+              child: const Text('Sincronizar API'),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            const SizedBox(height: 10),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green,
+              ),
+              onPressed: () => testarFirebase(),
+              child: const Text('Testar Firebase'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.orange,
+              ),
+              onPressed: () => emAlta(),
+              child: const Text('Preencher Em Alta'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.grey,
+              ),
+              onPressed: () => topCriticos(),
+              child: const Text('Preencher Top Criticos'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.cyan,
+              ),
+              onPressed: () => sliders(),
+              child: const Text('Preencher Sliders'),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

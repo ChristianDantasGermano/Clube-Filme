@@ -1,0 +1,18 @@
+import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
+import 'package:aplicativo/app/shared/firestore/repositories/diretores_repository_interface.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class DiretoresRepository implements IDiretoresRepository {
+  final FirebaseFirestore firestore;
+
+  DiretoresRepository(this.firestore);
+
+  @override
+  Stream<List<Pessoa>> getTodos() {
+    return firestore.collection('Diretores').snapshots().map((query) {
+      return query.docs.map((doc) {
+        return Pessoa.fromDocument(doc);
+      }).toList();
+    });
+  }
+}

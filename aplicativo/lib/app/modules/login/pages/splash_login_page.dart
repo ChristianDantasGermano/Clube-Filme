@@ -17,7 +17,7 @@ class SplashLoginPageState extends State<SplashLoginPage> {
     disposer = autorun((_) {
       final auth = Modular.get<AuthController>();
       if (auth.status == AuthStatus.login) {
-        Modular.to.pushReplacementNamed('/start');
+        Modular.to.pushReplacementNamed('/splashdados');
       } else if (auth.status == AuthStatus.logoff) {
         Modular.to.navigate('/login/google');
       }

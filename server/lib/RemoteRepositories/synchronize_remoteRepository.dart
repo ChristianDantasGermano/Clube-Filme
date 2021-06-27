@@ -10,7 +10,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Classe para passa todos dados da API para o banco
 class SynchronizeRemoteRepository {
-  
   Future<void> synchronize() async {
     //Iniciar comunicação com Firabase
     await Firebase.initializeApp();
@@ -43,7 +42,7 @@ class SynchronizeRemoteRepository {
       List listEstudio = [];
       List listVideo = [];
       List listGeneros = [];
-      
+
       var imagem;
       var localizacao;
 
@@ -66,36 +65,35 @@ class SynchronizeRemoteRepository {
                 DocumentReference atorRef;
                 atorRef = value.reference;
                 //Cria a lista com referencias do documento de atores
-                createListAtores(listAtores, atorRef, ator.character);
+                listAtores.add(atorRef);
               });
             });
       }
-      
       //Salvar estúdios na lista
-      for(var estudio in movie.productionCompanies){
+      for (var estudio in movie.productionCompanies) {
         createListEstudio(listEstudio, estudio);
       }
 
       //Salvar gêneros na lista
-      for(var genero in movie.genres){
-        createListGeneros(listGeneros, genero);
+      for (var genero in movie.genres) {
+        listGeneros.add(genero);
       }
-      
+
       //Salvar vídeos na lista
-      for(var video in movie.video){
+      for (var video in movie.video) {
         createListVideos(listVideo, video);
       }
 
       //Salvar imagem
       imagem = {
-        "LinkBackground" : movie.backdropPath,
-        "LinkCartaz" : movie.posterPath
+        "LinkBackground": movie.backdropPath,
+        "LinkCartaz": movie.posterPath
       };
 
       //Salvar localização
       localizacao = {
-        "Sigla" : movie.productionCountries[0].iso31661,
-        "Nome" : movie.productionCountries[0].name
+        "Sigla": movie.productionCountries[0].iso31661,
+        "Nome": movie.productionCountries[0].name
       };
 
       //Cadastrar o diretor se não existir
@@ -109,12 +107,11 @@ class SynchronizeRemoteRepository {
           })
           .then((value) => print("Cadastrado diretor com  sucesso"))
           .catchError((error) => print("Erro ao cadastrar diretor"));
-
       await diretorRemote.doc(movie.director.id).get().then((value) {
         directorRef = value.reference;
         //Coloca o cadastro do filme na batch
         batch.set(moviesRemote.doc(movie.id), {
-          "Atores": FieldValue.arrayUnion(listAtores),
+          "Atores": listAtores,
           "DataLancamento": movie.releaseDate,
           "Duracao": movie.runtime,
           "Status": movie.status,
@@ -125,14 +122,13 @@ class SynchronizeRemoteRepository {
           "Tagline": movie.tagline,
           "Titulo": movie.title,
           "Diretor": directorRef,
-          "Estudios": FieldValue.arrayUnion(listEstudio),
-          "Generos": FieldValue.arrayUnion(listGeneros),
-          "Videos": FieldValue.arrayUnion(listVideo),
+          "Estudios": listEstudio,
+          "Generos": listGeneros,
+          "Videos": listVideo,
           "Imagen": imagem,
           "Localizacao": localizacao
-        });       
+        });
       });
-
     }
     //Executa todos os cadastros de filme
     await batch
@@ -141,20 +137,15 @@ class SynchronizeRemoteRepository {
         .catchError((onError) => print(onError));
   }
 
-  //Listas 
+  //Listas
 
   //Função para salvar atores no formato do documento no firabase
-  void createListAtores(listAtores, ator, personagem) {
-    listAtores.add({"Ator":  ator, "Nome": personagem});
-  }
-
   void createListEstudio(listEstudio, ProductionCompanies estudio) {
     listEstudio.add({"Imagen": estudio.logoPath, "Nome": estudio.name});
   }
-  void createListGeneros(listGeneros,String genero) {
-    listGeneros.add({"genero": genero});
-  }
-  void createListVideos(listVideos,Video videos) {
-    listVideos.add({"Link": videos.link, "Site": videos.site,"Tipo" : videos.type});
+
+  void createListVideos(listVideos, Video videos) {
+    listVideos
+        .add({"Link": videos.link, "Site": videos.site, "Tipo": videos.type});
   }
 }

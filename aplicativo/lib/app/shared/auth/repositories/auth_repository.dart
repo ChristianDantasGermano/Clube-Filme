@@ -20,6 +20,7 @@ class AuthRepository implements IAuthRepository {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
+
     // Once signed in, return the UserCredential
     return await _auth.signInWithCredential(credential);
   }
