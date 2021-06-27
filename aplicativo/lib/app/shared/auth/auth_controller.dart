@@ -18,31 +18,43 @@ abstract class _AuthControllerBase with Store {
   @observable
   Usuario? usuario;
 
+  @observable
+  User? usuarioGoogle;
+
   @action
-  setUsuario(Usuario? value) {
-    print("emtrou setusuario");
+  setUsuario(Usuario? value, User? google) async {
     usuario = value;
-    if (usuario?.email == "" || usuario == null) {
+    usuarioGoogle = google;
+    print(usuarioGoogle);
+    if (usuario == null && usuarioGoogle != null) {
+      await _authRepository.preencherUsuario();
+      usuario = _authRepository.getUsuario();
+      status = AuthStatus.login;
+    } else if ((usuario == null || usuario?.email == "") &&
+        usuarioGoogle == null) {
       status = AuthStatus.logoff;
     } else {
       status = AuthStatus.login;
     }
+    print(usuario?.email);
+    print(usuario?.imagem);
+    print(usuario?.nome);
   }
 
   _AuthControllerBase() {
-    setUsuario(_authRepository.getUsuario());
+    setUsuario(
+        _authRepository.getUsuario(), _authRepository.getUsuarioGoogle());
   }
 
   @action
   Future loginWithGoogle() async {
-    status = AuthStatus.login;
     await _authRepository.getGoogleLogin();
-    setUsuario(_authRepository.getUsuario());
+    setUsuario(
+        _authRepository.getUsuario(), _authRepository.getUsuarioGoogle());
   }
 
   @action
   Future logOut() {
-    status = AuthStatus.logoff;
     return _authRepository.getLogout();
   }
 }

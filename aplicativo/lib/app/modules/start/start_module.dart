@@ -8,7 +8,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 class StartModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.singleton((i) => StartStore()),
+    Bind.lazySingleton((i) => StartStore()),
     Bind.lazySingleton((i) => HomeStore()),
     Bind.lazySingleton((i) => FavoritosStore()),
   ];

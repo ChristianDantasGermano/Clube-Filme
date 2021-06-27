@@ -39,6 +39,28 @@ mixin _$AuthController on _AuthControllerBase, Store {
     });
   }
 
+  final _$usuarioGoogleAtom = Atom(name: '_AuthControllerBase.usuarioGoogle');
+
+  @override
+  User? get usuarioGoogle {
+    _$usuarioGoogleAtom.reportRead();
+    return super.usuarioGoogle;
+  }
+
+  @override
+  set usuarioGoogle(User? value) {
+    _$usuarioGoogleAtom.reportWrite(value, super.usuarioGoogle, () {
+      super.usuarioGoogle = value;
+    });
+  }
+
+  final _$setUsuarioAsyncAction = AsyncAction('_AuthControllerBase.setUsuario');
+
+  @override
+  Future setUsuario(Usuario? value, User? google) {
+    return _$setUsuarioAsyncAction.run(() => super.setUsuario(value, google));
+  }
+
   final _$loginWithGoogleAsyncAction =
       AsyncAction('_AuthControllerBase.loginWithGoogle');
 
@@ -49,17 +71,6 @@ mixin _$AuthController on _AuthControllerBase, Store {
 
   final _$_AuthControllerBaseActionController =
       ActionController(name: '_AuthControllerBase');
-
-  @override
-  dynamic setUsuario(Usuario? value) {
-    final _$actionInfo = _$_AuthControllerBaseActionController.startAction(
-        name: '_AuthControllerBase.setUsuario');
-    try {
-      return super.setUsuario(value);
-    } finally {
-      _$_AuthControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   Future<dynamic> logOut() {
@@ -76,7 +87,8 @@ mixin _$AuthController on _AuthControllerBase, Store {
   String toString() {
     return '''
 status: ${status},
-usuario: ${usuario}
+usuario: ${usuario},
+usuarioGoogle: ${usuarioGoogle}
     ''';
   }
 }
