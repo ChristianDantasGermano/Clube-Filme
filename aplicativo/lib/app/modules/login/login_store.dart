@@ -8,6 +8,9 @@ class LoginStore = _LoginStoreBase with _$LoginStore;
 
 abstract class _LoginStoreBase with Store {
   AuthController auth = Modular.get();
+  _LoginStoreBase() {
+    print("entrou login store");
+  }
   @action
   Future loginWithGoogle() async {
     try {

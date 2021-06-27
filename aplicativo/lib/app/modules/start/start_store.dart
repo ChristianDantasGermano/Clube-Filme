@@ -1,5 +1,6 @@
 import 'package:aplicativo/app/modules/start/components/hide_navbar.dart';
 import 'package:aplicativo/app/shared/auth/auth_controller.dart';
+import 'package:aplicativo/app/shared/auth/models/Usuario.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -26,7 +27,12 @@ abstract class _StartStoreBase with Store {
   }
 
   @action
-  User? user() {
-    return Modular.get<AuthController>().user;
+  Usuario? usuario() {
+    return Modular.get<AuthController>().usuario;
+  }
+
+  @action
+  perfil() {
+    Modular.to.navigate('/start/perfil');
   }
 }

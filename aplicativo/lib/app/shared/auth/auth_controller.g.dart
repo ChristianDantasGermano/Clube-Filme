@@ -24,18 +24,18 @@ mixin _$AuthController on _AuthControllerBase, Store {
     });
   }
 
-  final _$userAtom = Atom(name: '_AuthControllerBase.user');
+  final _$usuarioAtom = Atom(name: '_AuthControllerBase.usuario');
 
   @override
-  User? get user {
-    _$userAtom.reportRead();
-    return super.user;
+  Usuario? get usuario {
+    _$usuarioAtom.reportRead();
+    return super.usuario;
   }
 
   @override
-  set user(User? value) {
-    _$userAtom.reportWrite(value, super.user, () {
-      super.user = value;
+  set usuario(Usuario? value) {
+    _$usuarioAtom.reportWrite(value, super.usuario, () {
+      super.usuario = value;
     });
   }
 
@@ -51,11 +51,11 @@ mixin _$AuthController on _AuthControllerBase, Store {
       ActionController(name: '_AuthControllerBase');
 
   @override
-  dynamic setUser(User? value) {
+  dynamic setUsuario(Usuario? value) {
     final _$actionInfo = _$_AuthControllerBaseActionController.startAction(
-        name: '_AuthControllerBase.setUser');
+        name: '_AuthControllerBase.setUsuario');
     try {
-      return super.setUser(value);
+      return super.setUsuario(value);
     } finally {
       _$_AuthControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -76,7 +76,7 @@ mixin _$AuthController on _AuthControllerBase, Store {
   String toString() {
     return '''
 status: ${status},
-user: ${user}
+usuario: ${usuario}
     ''';
   }
 }

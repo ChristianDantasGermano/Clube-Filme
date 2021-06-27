@@ -20,11 +20,22 @@ mixin _$StartStore on _StartStoreBase, Store {
       ActionController(name: '_StartStoreBase');
 
   @override
-  User? user() {
+  Usuario? usuario() {
     final _$actionInfo = _$_StartStoreBaseActionController.startAction(
-        name: '_StartStoreBase.user');
+        name: '_StartStoreBase.usuario');
     try {
-      return super.user();
+      return super.usuario();
+    } finally {
+      _$_StartStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic perfil() {
+    final _$actionInfo = _$_StartStoreBaseActionController.startAction(
+        name: '_StartStoreBase.perfil');
+    try {
+      return super.perfil();
     } finally {
       _$_StartStoreBaseActionController.endAction(_$actionInfo);
     }
