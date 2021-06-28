@@ -1,3 +1,4 @@
+import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Slide {
@@ -12,5 +13,19 @@ class Slide {
     }
 
     return Slide(reference: list);
+  }
+
+  List<Filme> getFilmes(List<Filme> filmes) {
+    List<Filme> filme = [];
+
+    for (Filme f in filmes) {
+      for (DocumentReference r in reference) {
+        if (f.reference == r) {
+          filme.add(f);
+        }
+      }
+    }
+
+    return filme;
   }
 }

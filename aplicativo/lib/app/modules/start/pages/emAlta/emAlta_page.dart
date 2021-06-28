@@ -1,13 +1,15 @@
+import 'package:aplicativo/app/modules/start/pages/emAlta/emAlta_store.dart';
 import 'package:aplicativo/app/shared/models/emAlta_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class EmAltaPage extends StatefulWidget {
   @override
   EmAltaPageState createState() => EmAltaPageState();
 }
 
-class EmAltaPageState extends State<EmAltaPage> {
+class EmAltaPageState extends ModularState<EmAltaPage, EmAltaStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +31,8 @@ class EmAltaPageState extends State<EmAltaPage> {
                     shrinkWrap: true,
                     padding: EdgeInsets.symmetric(vertical: 5.0),
                     scrollDirection: Axis.vertical,
-                    itemCount: myList.length,
+                    itemCount: controller.emAlta.length,
                     itemBuilder: (BuildContext context, int index) {
-                      Alta lista = textos[index];
                       return Container(
                         child: Card(
                           margin: const EdgeInsets.all(10.0),
@@ -47,7 +48,10 @@ class EmAltaPageState extends State<EmAltaPage> {
                                   ),
                                   child: ClipRRect(
                                     child: CachedNetworkImage(
-                                      imageUrl: myList[index],
+                                      imageUrl:
+                                          "https://image.tmdb.org/t/p/original" +
+                                              controller.emAlta[index].imagem
+                                                  .linkCartaz,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -73,12 +77,13 @@ class EmAltaPageState extends State<EmAltaPage> {
                                               fontSize: 20.0,
                                               fontWeight: FontWeight.w600,
                                             ),
-                                            text: lista.title),
+                                            text: controller
+                                                .emAlta[index].titulo),
                                       ),
                                     ),
                                   ),
                                   Text(
-                                    lista.categories,
+                                    controller.emAlta[index].generos.first,
                                     style: TextStyle(
                                       color: Colors.black54,
                                       fontSize: 12.0,
@@ -92,7 +97,8 @@ class EmAltaPageState extends State<EmAltaPage> {
                                         0.47,
                                     child: SingleChildScrollView(
                                       child: Text(
-                                        lista.description.replaceAll("\n", " "),
+                                        controller.emAlta[index].sinopse
+                                            .replaceAll("\n", " "),
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
                                           color: Colors.black54,

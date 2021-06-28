@@ -1,6 +1,8 @@
 import 'package:aplicativo/app/modules/start/pages/elenco/components/radiobutton_modal_widget.dart';
+import 'package:aplicativo/app/modules/start/pages/elenco/elenco_store.dart';
 import 'package:aplicativo/app/shared/models/checkbox_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ElencoModalWidget extends StatefulWidget {
   @override
@@ -9,6 +11,8 @@ class ElencoModalWidget extends StatefulWidget {
 
 class _ElencoModalWidgetState extends State<ElencoModalWidget>
     with SingleTickerProviderStateMixin {
+  ElencoStore pessoa = Modular.get();
+
   bool organizacao =
       true; //Determina se é ordem alfabetica ou visualizacao (true -> alfabetica, false -> visualizacao)
   bool buttonArrow =
@@ -80,12 +84,22 @@ class _ElencoModalWidgetState extends State<ElencoModalWidget>
                                   elevation: 0,
                                   margin: EdgeInsets.zero,
                                   child: ListTile(
-                                    onTap: () => setState(() {
-                                      if (!organizacao) {
-                                        buttonArrow = !buttonArrow;
-                                      }
-                                      organizacao = false;
-                                    }),
+                                    onTap: () => {
+                                      setState(() {
+                                        if (!organizacao) {
+                                          buttonArrow = !buttonArrow;
+                                        }
+                                        organizacao = false;
+
+                                        if (!organizacao && buttonArrow) {
+                                          pessoa.alfabeticoDecrescenteAtor();
+                                          pessoa.alfabeticoDecrescenteDireto();
+                                        } else {
+                                          pessoa.alfabeticoCrescenteDiretor();
+                                          pessoa.alfabeticoCrescenteAtor();
+                                        }
+                                      })
+                                    },
                                     leading: Icon(
                                       buttonArrow
                                           ? Icons.arrow_drop_down
@@ -102,12 +116,21 @@ class _ElencoModalWidgetState extends State<ElencoModalWidget>
                                   elevation: 0,
                                   margin: EdgeInsets.zero,
                                   child: ListTile(
-                                    onTap: () => setState(() {
-                                      if (organizacao) {
-                                        buttonArrow = !buttonArrow;
+                                    onTap: () {
+                                      setState(() {
+                                        if (organizacao) {
+                                          buttonArrow = !buttonArrow;
+                                        }
+                                        organizacao = true;
+                                      });
+                                      if (organizacao && buttonArrow) {
+                                        pessoa.popularidadeDecrescenteAtor();
+                                        pessoa.popularidadeDecrescenteDireto();
+                                      } else {
+                                        pessoa.popularidadeCrescenteAtor();
+                                        pessoa.popularidadeCrescenteDireto();
                                       }
-                                      organizacao = true;
-                                    }),
+                                    },
                                     leading: Icon(
                                       buttonArrow
                                           ? Icons.arrow_drop_down

@@ -1,9 +1,10 @@
+import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
 import 'package:aplicativo/app/shared/pages/view_movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class ContentScrollWidget extends StatelessWidget {
-  final List<String> images;
+  final List<Filme> images;
   final String title;
   final double imageHeight;
   final double imageWidth;
@@ -73,7 +74,8 @@ class ContentScrollWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: CachedNetworkImage(
-                    imageUrl: images[index],
+                    imageUrl: "https://image.tmdb.org/t/p/original" +
+                        images[index].imagem.linkCartaz,
                     fit: BoxFit.cover,
                   ),
                 ),

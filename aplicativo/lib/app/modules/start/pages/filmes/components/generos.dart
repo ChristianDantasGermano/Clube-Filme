@@ -1,0 +1,21 @@
+enum Generos {
+  acao,
+  aventura,
+  animacao,
+  comedia,
+  crime,
+  documentario,
+  drama,
+  familia,
+  fantasia,
+  historia,
+  terror,
+  musica,
+  misterio,
+  romance,
+  ficcaocientifica,
+  cinemaTV,
+  Thriller,
+  Guerra,
+  Faroeste
+}

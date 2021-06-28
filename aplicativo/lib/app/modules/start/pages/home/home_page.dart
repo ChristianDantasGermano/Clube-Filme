@@ -53,11 +53,12 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 ),
                 child: Center(
                   child: Hero(
-                    tag: movies[index].imageUrl,
+                    tag: controller.getSlider()[index].imagem,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10.0),
                       child: CachedNetworkImage(
-                        imageUrl: movies[index].imageUrl,
+                        imageUrl: "https://image.tmdb.org/t/p/original" +
+                            controller.getSlider()[index].imagem.linkBackground,
                         height: 220.0,
                         fit: BoxFit.cover,
                       ),
@@ -72,7 +73,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               child: Container(
                 width: 250.0,
                 child: Text(
-                  movies[index].title.toUpperCase(),
+                  controller.getSlider()[index].titulo.toUpperCase(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
@@ -106,14 +107,14 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
           ),
           SizedBox(height: 20.0),
           ContentScrollWidget(
-            images: myList,
+            images: controller.getCriticas(),
             title: 'Top Críticas',
             imageHeight: 250.0,
             imageWidth: 150.0,
           ),
           SizedBox(height: 10.0),
           ContentScrollWidget(
-            images: popular,
+            images: controller.getUsuarios(),
             title: 'Top Usuários',
             imageHeight: 250.0,
             imageWidth: 150.0,

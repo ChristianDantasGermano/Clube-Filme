@@ -1,4 +1,7 @@
+import 'package:aplicativo/app/modules/start/pages/elenco/elenco_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class RadioButtonModal extends StatefulWidget {
@@ -6,44 +9,43 @@ class RadioButtonModal extends StatefulWidget {
   _RadioButtonModalState createState() => _RadioButtonModalState();
 }
 
-enum cargos { diretores, atores }
-
 /// This is the private State class that goes with MyStatefulWidget.
-class _RadioButtonModalState extends State<RadioButtonModal> {
-  cargos _character = cargos.diretores;
-
+class _RadioButtonModalState
+    extends ModularState<RadioButtonModal, ElencoStore> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Card(
-          margin: EdgeInsets.zero,
-          elevation: 0,
-          child: RadioListTile<cargos>(
-            title: const Text('Diretores'),
-            value: cargos.diretores,
-            groupValue: _character,
-            onChanged: (value) {
-              setState(() {
-                _character = value!;
-              });
-            },
-          ),
-        ),
-        Card(
+    return Observer(builder: (_) {
+      return Column(
+        children: <Widget>[
+          Card(
             margin: EdgeInsets.zero,
             elevation: 0,
-            child: RadioListTile<cargos>(
-              title: const Text('Atores'),
-              value: cargos.atores,
-              groupValue: _character,
+            child: RadioListTile<String>(
+              title: const Text('Diretores'),
+              value: "Diretores",
+              groupValue: controller.cargo,
               onChanged: (value) {
                 setState(() {
-                  _character = value!;
+                  controller.setCargo(value!);
                 });
               },
-            )),
-      ],
-    );
+            ),
+          ),
+          Card(
+              margin: EdgeInsets.zero,
+              elevation: 0,
+              child: RadioListTile<String>(
+                title: const Text('Atores'),
+                value: "Atores",
+                groupValue: controller.cargo,
+                onChanged: (value) {
+                  setState(() {
+                    controller.setCargo(value!);
+                  });
+                },
+              )),
+        ],
+      );
+    });
   }
 }

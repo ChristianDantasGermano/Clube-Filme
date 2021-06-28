@@ -246,13 +246,6 @@ class _MoviePageState extends State<MoviePage> {
               ],
             ),
           ),
-          ContentScrollWidget(
-            //Área de imagens do filme
-            images: widget.movie.screenshots,
-            title: 'Imagens',
-            imageHeight: 200.0,
-            imageWidth: 250.0,
-          ),
           CommentViewWidget(), //Área dos comentários
         ],
       ),

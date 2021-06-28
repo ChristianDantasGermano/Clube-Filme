@@ -10,7 +10,7 @@ part 'start_store.g.dart';
 class StartStore = _StartStoreBase with _$StartStore;
 
 abstract class _StartStoreBase with Store {
-  final pageViewController = PageController();
+  final PageController pageViewController = PageController();
   //Bottom Bar
   final HideNavbar hiding = HideNavbar();
 

@@ -1,7 +1,8 @@
+import 'package:aplicativo/app/modules/start/pages/filmes/components/radiobutton_modal_widget.dart';
+import 'package:aplicativo/app/modules/start/pages/filmes/filmes_store.dart';
 import 'package:aplicativo/app/shared/models/checkbox_model.dart';
 import 'package:flutter/material.dart';
-
-import 'generos_checkbox_widget.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class MovieModalWidget extends StatefulWidget {
   @override
@@ -10,6 +11,8 @@ class MovieModalWidget extends StatefulWidget {
 
 class _MovieModalWidgetState extends State<MovieModalWidget>
     with SingleTickerProviderStateMixin {
+  FilmesStore filmes = Modular.get();
+
   bool organizacao =
       true; //Determina se é ordem alfabetica ou visualizacao (true -> alfabetica, false -> visualizacao)
   bool buttonArrow =
@@ -86,12 +89,20 @@ class _MovieModalWidgetState extends State<MovieModalWidget>
                                   elevation: 0,
                                   margin: EdgeInsets.zero,
                                   child: ListTile(
-                                    onTap: () => setState(() {
-                                      if (!organizacao) {
-                                        buttonArrow = !buttonArrow;
-                                      }
-                                      organizacao = false;
-                                    }),
+                                    onTap: () => {
+                                      setState(() {
+                                        if (!organizacao) {
+                                          buttonArrow = !buttonArrow;
+                                        }
+                                        organizacao = false;
+
+                                        if (!organizacao && buttonArrow) {
+                                          filmes.alfabeticoDecrescente();
+                                        } else {
+                                          filmes.alfabeticoCrescente();
+                                        }
+                                      })
+                                    },
                                     leading: Icon(
                                       buttonArrow
                                           ? Icons.arrow_drop_down
@@ -108,12 +119,19 @@ class _MovieModalWidgetState extends State<MovieModalWidget>
                                   elevation: 0,
                                   margin: EdgeInsets.zero,
                                   child: ListTile(
-                                    onTap: () => setState(() {
-                                      if (organizacao) {
-                                        buttonArrow = !buttonArrow;
+                                    onTap: () {
+                                      setState(() {
+                                        if (organizacao) {
+                                          buttonArrow = !buttonArrow;
+                                        }
+                                        organizacao = true;
+                                      });
+                                      if (organizacao && buttonArrow) {
+                                        filmes.visualizacaoDecrescente();
+                                      } else {
+                                        filmes.visualizacaoCrescente();
                                       }
-                                      organizacao = true;
-                                    }),
+                                    },
                                     leading: Icon(
                                       buttonArrow
                                           ? Icons.arrow_drop_down
@@ -135,7 +153,7 @@ class _MovieModalWidgetState extends State<MovieModalWidget>
                               controller: controller,
                               itemCount: itens.length,
                               itemBuilder: (_, int index) {
-                                return CheckboxWidget(item: itens[index]);
+                                return RadioButtonModal();
                               },
                             ),
                           ),
