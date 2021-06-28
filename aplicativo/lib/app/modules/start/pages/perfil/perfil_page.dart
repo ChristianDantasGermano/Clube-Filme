@@ -2,10 +2,16 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:aplicativo/app/modules/start/start_store.dart';
+import 'package:aplicativo/app/shared/auth/auth_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
 class PerfilPage extends StatefulWidget {
   @override
@@ -15,13 +21,31 @@ class PerfilPage extends StatefulWidget {
 class PerfilPageState extends ModularState<PerfilPage, StartStore> {
   File? arquivo;
   final imagePicker = ImagePicker();
+  firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
+  CollectionReference usuariosRef =
+      FirebaseFirestore.instance.collection('Usuarios');
 
   Future _tirarFoto() async {
     final imagem = await imagePicker.getImage(source: ImageSource.camera);
+    Directory diretorio = await getApplicationDocumentsDirectory();
     if (imagem != null) {
       setState(() {
         arquivo = File(imagem.path);
       });
+      try {
+        var upload = await firebase_storage.FirebaseStorage.instance
+            .ref('${controller.usuarioGoogle()!.uid}')
+            .putFile(arquivo!);
+        final String downloadUrl = await upload.ref.getDownloadURL();
+        await usuariosRef
+            .doc(controller.usuarioGoogle()!.uid.toString())
+            .update({'Imagem': downloadUrl});
+        print(controller.usuario()!.imagem.toString());
+        controller.auth.reloadUsuario();
+      } on firebase_core.FirebaseException catch (e) {
+        // e.g, e.code == 'canceled'
+      }
     }
   }
 
@@ -31,6 +55,20 @@ class PerfilPageState extends ModularState<PerfilPage, StartStore> {
       setState(() {
         arquivo = File(imagem.path);
       });
+      try {
+        var upload = await firebase_storage.FirebaseStorage.instance
+            .ref('${controller.usuarioGoogle()!.uid}')
+            .putFile(arquivo!);
+        final String downloadUrl = await upload.ref.getDownloadURL();
+        await usuariosRef
+            .doc(controller.usuarioGoogle()!.uid.toString())
+            .update({'Imagem': downloadUrl});
+        print(controller.usuario()!.imagem.toString());
+        await controller.auth.reloadUsuario();
+        await controller.perfil();
+      } on firebase_core.FirebaseException catch (e) {
+        // e.g, e.code == 'canceled'
+      }
     }
   }
 

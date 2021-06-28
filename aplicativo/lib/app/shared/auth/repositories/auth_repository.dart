@@ -54,15 +54,21 @@ class AuthRepository implements IAuthRepository {
     CollectionReference usersRemote =
         FirebaseFirestore.instance.collection('Usuarios');
 
-    await usersRemote.doc(idUser).set({
-      "Imagem": _auth.currentUser!.photoURL.toString(),
-      "Nome": _auth.currentUser!.displayName.toString(),
-      "Email": _auth.currentUser!.email.toString(),
+    await usersRemote
+        .doc(idUser)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists == false) {
+        usersRemote.doc(idUser).set({
+          "Imagem": _auth.currentUser!.photoURL.toString(),
+          "Nome": _auth.currentUser!.displayName.toString(),
+          "Email": _auth.currentUser!.email.toString(),
+        });
+      }
     });
   }
 
   Future preencherUsuario() async {
-    print("PRenche essa merda");
     final idUser = _auth.currentUser!.uid.toString();
     print("IDdo merdinha " + idUser);
     CollectionReference usersRemote =

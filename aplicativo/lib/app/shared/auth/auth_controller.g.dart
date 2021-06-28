@@ -84,6 +84,17 @@ mixin _$AuthController on _AuthControllerBase, Store {
   }
 
   @override
+  dynamic reloadUsuario() {
+    final _$actionInfo = _$_AuthControllerBaseActionController.startAction(
+        name: '_AuthControllerBase.reloadUsuario');
+    try {
+      return super.reloadUsuario();
+    } finally {
+      _$_AuthControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 status: ${status},

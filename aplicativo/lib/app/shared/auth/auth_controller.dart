@@ -26,6 +26,7 @@ abstract class _AuthControllerBase with Store {
     usuario = value;
     usuarioGoogle = google;
     print(usuarioGoogle);
+
     if (usuario == null && usuarioGoogle != null) {
       await _authRepository.preencherUsuario();
       usuario = _authRepository.getUsuario();
@@ -56,6 +57,11 @@ abstract class _AuthControllerBase with Store {
   @action
   Future logOut() {
     return _authRepository.getLogout();
+  }
+
+  @action
+  reloadUsuario() {
+    _authRepository.getUsuario();
   }
 }
 

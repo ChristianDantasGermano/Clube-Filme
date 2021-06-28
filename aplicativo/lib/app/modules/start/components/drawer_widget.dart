@@ -26,7 +26,7 @@ class DrawerWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: CachedNetworkImageProvider(
+                          image: NetworkImage(
                               controller.usuario()!.imagem.toString()),
                           fit: BoxFit.fill)),
                 ),
