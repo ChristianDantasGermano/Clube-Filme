@@ -3,6 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobx/mobx.dart';
 
+import 'models/Usuario.dart';
+
 part 'auth_controller.g.dart';
 
 class AuthController = _AuthControllerBase with _$AuthController;
@@ -14,27 +16,52 @@ abstract class _AuthControllerBase with Store {
   AuthStatus status = AuthStatus.loading;
 
   @observable
-  User? user;
+  Usuario? usuario;
+
+  @observable
+  User? usuarioGoogle;
 
   @action
-  setUser(User? value) {
-    user = value;
-    status = user == null ? AuthStatus.logoff : AuthStatus.login;
+  setUsuario(Usuario? value, User? google) async {
+    usuario = value;
+    usuarioGoogle = google;
+    print(usuarioGoogle);
+
+    if (usuario == null && usuarioGoogle != null) {
+      await _authRepository.preencherUsuario();
+      usuario = _authRepository.getUsuario();
+      status = AuthStatus.login;
+    } else if ((usuario == null || usuario?.email == "") &&
+        usuarioGoogle == null) {
+      status = AuthStatus.logoff;
+    } else {
+      status = AuthStatus.login;
+    }
+    print(usuario?.email);
+    print(usuario?.imagem);
+    print(usuario?.nome);
   }
 
   _AuthControllerBase() {
-    setUser(_authRepository.getUser());
+    setUsuario(
+        _authRepository.getUsuario(), _authRepository.getUsuarioGoogle());
   }
 
   @action
   Future loginWithGoogle() async {
     await _authRepository.getGoogleLogin();
-    setUser(_authRepository.getUser());
+    setUsuario(
+        _authRepository.getUsuario(), _authRepository.getUsuarioGoogle());
   }
 
   @action
   Future logOut() {
     return _authRepository.getLogout();
+  }
+
+  @action
+  reloadUsuario() {
+    _authRepository.getUsuario();
   }
 }
 

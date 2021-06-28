@@ -1,4 +1,5 @@
 import 'package:aplicativo/app/modules/start/start_store.dart';
+import 'package:aplicativo/app/shared/auth/auth_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -25,16 +26,16 @@ class DrawerWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: CachedNetworkImageProvider(
-                              controller.user()!.photoURL.toString()),
+                          image: NetworkImage(
+                              controller.usuario()!.imagem.toString()),
                           fit: BoxFit.fill)),
                 ),
                 Text(
-                  controller.user()!.displayName.toString(),
+                  controller.usuario()!.nome.toString(),
                   style: TextStyle(fontSize: 22, color: Colors.white),
                 ),
                 Text(
-                  controller.user()!.email.toString(),
+                  controller.usuario()!.email.toString(),
                   style: TextStyle(color: Colors.white),
                 )
               ],
@@ -49,7 +50,7 @@ class DrawerWidget extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          onTap: null,
+          onTap: controller.perfil,
         ),
         ListTile(
           leading: Icon(Icons.settings),

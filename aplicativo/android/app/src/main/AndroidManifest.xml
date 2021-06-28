@@ -2,6 +2,7 @@
     package="br.clubefilme.aplicativo">
    <application
         android:label="aplicativo"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

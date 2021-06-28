@@ -3,6 +3,7 @@ import 'package:aplicativo/app/modules/start/pages/emAlta/emAlta_store.dart';
 import 'package:aplicativo/app/modules/start/pages/favoritos/favoritos_store.dart';
 import 'package:aplicativo/app/modules/start/pages/filmes/filmes_store.dart';
 import 'package:aplicativo/app/modules/start/pages/home/home_store.dart';
+import 'package:aplicativo/app/modules/start/pages/perfil/perfil_page.dart';
 import 'package:aplicativo/app/modules/start/start_page.dart';
 import 'package:aplicativo/app/modules/start/start_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -24,5 +25,9 @@ class StartModule extends Module {
       '/start',
       child: (context, args) => StartPage(),
     ),
+    ChildRoute(
+      '/perfil',
+      child: (context, args) => PerfilPage(),
+    )
   ];
 }

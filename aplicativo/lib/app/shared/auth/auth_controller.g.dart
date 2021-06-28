@@ -24,19 +24,41 @@ mixin _$AuthController on _AuthControllerBase, Store {
     });
   }
 
-  final _$userAtom = Atom(name: '_AuthControllerBase.user');
+  final _$usuarioAtom = Atom(name: '_AuthControllerBase.usuario');
 
   @override
-  User? get user {
-    _$userAtom.reportRead();
-    return super.user;
+  Usuario? get usuario {
+    _$usuarioAtom.reportRead();
+    return super.usuario;
   }
 
   @override
-  set user(User? value) {
-    _$userAtom.reportWrite(value, super.user, () {
-      super.user = value;
+  set usuario(Usuario? value) {
+    _$usuarioAtom.reportWrite(value, super.usuario, () {
+      super.usuario = value;
     });
+  }
+
+  final _$usuarioGoogleAtom = Atom(name: '_AuthControllerBase.usuarioGoogle');
+
+  @override
+  User? get usuarioGoogle {
+    _$usuarioGoogleAtom.reportRead();
+    return super.usuarioGoogle;
+  }
+
+  @override
+  set usuarioGoogle(User? value) {
+    _$usuarioGoogleAtom.reportWrite(value, super.usuarioGoogle, () {
+      super.usuarioGoogle = value;
+    });
+  }
+
+  final _$setUsuarioAsyncAction = AsyncAction('_AuthControllerBase.setUsuario');
+
+  @override
+  Future setUsuario(Usuario? value, User? google) {
+    return _$setUsuarioAsyncAction.run(() => super.setUsuario(value, google));
   }
 
   final _$loginWithGoogleAsyncAction =
@@ -51,17 +73,6 @@ mixin _$AuthController on _AuthControllerBase, Store {
       ActionController(name: '_AuthControllerBase');
 
   @override
-  dynamic setUser(User? value) {
-    final _$actionInfo = _$_AuthControllerBaseActionController.startAction(
-        name: '_AuthControllerBase.setUser');
-    try {
-      return super.setUser(value);
-    } finally {
-      _$_AuthControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   Future<dynamic> logOut() {
     final _$actionInfo = _$_AuthControllerBaseActionController.startAction(
         name: '_AuthControllerBase.logOut');
@@ -73,10 +84,22 @@ mixin _$AuthController on _AuthControllerBase, Store {
   }
 
   @override
+  dynamic reloadUsuario() {
+    final _$actionInfo = _$_AuthControllerBaseActionController.startAction(
+        name: '_AuthControllerBase.reloadUsuario');
+    try {
+      return super.reloadUsuario();
+    } finally {
+      _$_AuthControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 status: ${status},
-user: ${user}
+usuario: ${usuario},
+usuarioGoogle: ${usuarioGoogle}
     ''';
   }
 }

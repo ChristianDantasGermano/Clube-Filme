@@ -1,5 +1,6 @@
 import 'package:aplicativo/app/modules/start/components/hide_navbar.dart';
 import 'package:aplicativo/app/shared/auth/auth_controller.dart';
+import 'package:aplicativo/app/shared/auth/models/Usuario.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,6 +14,8 @@ abstract class _StartStoreBase with Store {
   final PageController pageViewController = PageController();
   //Bottom Bar
   final HideNavbar hiding = HideNavbar();
+  @observable
+  AuthController auth = Modular.get();
 
   void dispose() {
     pageViewController.dispose();
@@ -22,11 +25,21 @@ abstract class _StartStoreBase with Store {
   @action
   logoff() async {
     await Modular.get<AuthController>().logOut();
-    Modular.to.pushReplacementNamed('/login');
+    Modular.to.pushReplacementNamed('/login/google');
   }
 
   @action
-  User? user() {
-    return Modular.get<AuthController>().user;
+  Usuario? usuario() {
+    return Modular.get<AuthController>().usuario;
+  }
+
+  @action
+  perfil() {
+    Modular.to.navigate('/start/perfil');
+  }
+
+  @action
+  User? usuarioGoogle() {
+    return Modular.get<AuthController>().usuarioGoogle;
   }
 }
