@@ -1,17 +1,20 @@
 import 'package:aplicativo/app/shared/components/circular_clipper_widget.dart';
-import 'package:aplicativo/app/shared/components/content_scroll_widget.dart';
 import 'package:aplicativo/app/shared/components/content_scroll_widget_details.dart';
-import 'package:aplicativo/app/shared/models/movie_model.dart';
+import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
+import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
 import 'package:aplicativo/app/shared/pages/movie/components/actor_view_widget.dart';
 import 'package:aplicativo/app/shared/pages/movie/components/comment_view_widget..dart';
 import 'package:aplicativo/app/shared/pages/movie/components/score_view_widget..dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MoviePage extends StatefulWidget {
-  final Movie movie;
+  final Filme filme;
+  final List<Pessoa> diretor;
+  final List<Pessoa> autor;
 
-  MoviePage({required this.movie});
+  MoviePage({required this.filme, required this.diretor, required this.autor});
 
   @override
   _MoviePageState createState() => _MoviePageState();
@@ -31,7 +34,7 @@ class _MoviePageState extends State<MoviePage> {
               Container(
                 transform: Matrix4.translationValues(0.0, -50.0, 0.0),
                 child: Hero(
-                  tag: widget.movie.imageUrl,
+                  tag: widget.filme.imagem.linkBackground,
                   child: ClipShadowPathWidget(
                     clipper: CircularClipperWidget(),
                     shadow: Shadow(blurRadius: 20.0),
@@ -39,7 +42,9 @@ class _MoviePageState extends State<MoviePage> {
                       height: 400.0,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(widget.movie.imageUrl),
+                      image: CachedNetworkImageProvider(
+                          "https://image.tmdb.org/t/p/original" +
+                              widget.filme.imagem.linkBackground),
                     ),
                   ),
                 ),
@@ -89,7 +94,7 @@ class _MoviePageState extends State<MoviePage> {
                   child: RawMaterialButton(
                     padding: EdgeInsets.all(10.0),
                     elevation: 12.0,
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () => launch(widget.filme.video.first.link),
                     shape: CircleBorder(),
                     fillColor: Colors.white,
                     child: Icon(
@@ -108,7 +113,7 @@ class _MoviePageState extends State<MoviePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  widget.movie.title.toUpperCase(),
+                  widget.filme.titulo.toUpperCase(),
                   style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
@@ -117,7 +122,7 @@ class _MoviePageState extends State<MoviePage> {
                 ),
                 SizedBox(height: 10.0),
                 Text(
-                  '"tagline tagline tagline"',
+                  widget.filme.tagline,
                   style: TextStyle(
                     fontSize: 22.0,
                     fontWeight: FontWeight.normal,
@@ -127,7 +132,7 @@ class _MoviePageState extends State<MoviePage> {
                 ),
                 SizedBox(height: 10.0),
                 Text(
-                  widget.movie.categories,
+                  widget.filme.generos.first,
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 16.0,
@@ -141,7 +146,7 @@ class _MoviePageState extends State<MoviePage> {
                     children: [
                       ScoreViewWidget(
                         //Área das notas
-                        nota: "4.9",
+                        nota: widget.filme.notaCritico.toString(),
                         title: "Críticos",
                         cor: Colors.black,
                       ),
@@ -161,7 +166,7 @@ class _MoviePageState extends State<MoviePage> {
                     Column(
                       children: <Widget>[
                         Text(
-                          'Ano',
+                          'Data',
                           style: TextStyle(
                             color: Colors.black54,
                             fontSize: 16.0,
@@ -169,7 +174,7 @@ class _MoviePageState extends State<MoviePage> {
                         ),
                         SizedBox(height: 2.0),
                         Text(
-                          widget.movie.year.toString(),
+                          widget.filme.data,
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
@@ -188,7 +193,7 @@ class _MoviePageState extends State<MoviePage> {
                         ),
                         SizedBox(height: 2.0),
                         Text(
-                          widget.movie.country.toUpperCase(),
+                          widget.filme.local.sigla.toUpperCase(),
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
@@ -207,7 +212,7 @@ class _MoviePageState extends State<MoviePage> {
                         ),
                         SizedBox(height: 2.0),
                         Text(
-                          '${widget.movie.length} min',
+                          '${widget.filme.duracao} min',
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
@@ -222,7 +227,7 @@ class _MoviePageState extends State<MoviePage> {
                   height: 120.0,
                   child: SingleChildScrollView(
                     child: Text(
-                      widget.movie.description,
+                      widget.filme.sinopse,
                       style: TextStyle(
                         color: Colors.black54,
                       ),
@@ -256,11 +261,14 @@ class _MoviePageState extends State<MoviePage> {
                                 ),
                               ],
                               image: new DecorationImage(
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                   image: new NetworkImage(
-                                      "https://static.wikia.nocookie.net/ptstarwars/images/5/5e/Lucas.JPG/revision/latest?cb=20060504214710")))),
+                                      "https://image.tmdb.org/t/p/original" +
+                                          widget.filme
+                                              .getDiretor(widget.diretor)
+                                              .imagem)))),
                       new Text(
-                        'George Lucas',
+                        widget.filme.getDiretor(widget.diretor).nome,
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 18.0,
@@ -270,18 +278,19 @@ class _MoviePageState extends State<MoviePage> {
                   ),
                 ),
                 SizedBox(height: 25.0),
-                ActorViewWidget(movie: widget.movie), //Área dos autores
+                ActorViewWidget(
+                    pessoa: widget.filme
+                        .getAutores(widget.autor)), //Área dos autores
                 SizedBox(height: 25.0),
               ],
             ),
           ),
           ContentScrollWidgetDetails(
             //Área de imagens do filme
-            images: widget.movie.screenshots,
+            estudio: widget.filme.estudio,
             title: 'Produtoras',
-            imageHeight: 200.0,
-            imageWidth: 200.0,
-            movie: widget.movie,
+            imageHeight: 150.0,
+            imageWidth: 150.0,
           ),
           CommentViewWidget(), //Área dos comentários
         ],

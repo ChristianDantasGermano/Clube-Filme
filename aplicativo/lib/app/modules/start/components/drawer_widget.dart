@@ -1,6 +1,4 @@
 import 'package:aplicativo/app/modules/start/start_store.dart';
-import 'package:aplicativo/app/shared/auth/auth_controller.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -28,7 +26,7 @@ class DrawerWidget extends StatelessWidget {
                       image: DecorationImage(
                           image: NetworkImage(
                               controller.usuario()!.imagem.toString()),
-                          fit: BoxFit.fill)),
+                          fit: BoxFit.cover)),
                 ),
                 Text(
                   controller.usuario()!.nome.toString(),

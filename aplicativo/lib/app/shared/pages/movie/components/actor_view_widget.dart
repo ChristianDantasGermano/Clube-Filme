@@ -1,11 +1,11 @@
-import 'package:aplicativo/app/shared/models/movie_model.dart';
+import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ActorViewWidget extends StatelessWidget {
-  final Movie movie;
+  final List<Pessoa> pessoa;
 
-  ActorViewWidget({required this.movie});
+  ActorViewWidget({required this.pessoa});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class ActorViewWidget extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 padding: const EdgeInsets.all(8),
-                itemCount: movie.actors.length,
+                itemCount: pessoa.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     height: 50,
@@ -51,11 +51,12 @@ class ActorViewWidget extends StatelessWidget {
                                   ),
                                 ],
                                 image: new DecorationImage(
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.cover,
                                     image: CachedNetworkImageProvider(
-                                        movie.photoActors[index])))),
+                                        "https://image.tmdb.org/t/p/original" +
+                                            pessoa[index].imagem)))),
                         Text(
-                          movie.actors[index],
+                          pessoa[index].nome,
                           style: TextStyle(
                             color: Colors.black54,
                             fontSize: 18.0,

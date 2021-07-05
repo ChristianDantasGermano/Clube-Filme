@@ -33,7 +33,11 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => MoviePage(movie: movies[index]),
+            builder: (_) => MoviePage(
+              filme: controller.getSlider()[index],
+              autor: controller.getAtor(),
+              diretor: controller.getDiretor(),
+            ),
           ),
         ),
         child: Stack(

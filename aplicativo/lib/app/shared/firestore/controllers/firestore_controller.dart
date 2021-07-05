@@ -1,4 +1,3 @@
-import 'package:aplicativo/app/shared/auth/repositories/auth_repository_interface.dart';
 import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
 import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
 import 'package:aplicativo/app/shared/firestore/models/slide_model.dart';
@@ -6,8 +5,6 @@ import 'package:aplicativo/app/shared/firestore/repositories/atores_repository_i
 import 'package:aplicativo/app/shared/firestore/repositories/diretores_repository_interface.dart';
 import 'package:aplicativo/app/shared/firestore/repositories/filmes_repository_interface.dart';
 import 'package:aplicativo/app/shared/firestore/repositories/slider_repository_interface.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobx/mobx.dart';
 
 part 'firestore_controller.g.dart';

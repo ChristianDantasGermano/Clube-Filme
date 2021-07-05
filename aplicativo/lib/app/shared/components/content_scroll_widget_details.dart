@@ -1,20 +1,18 @@
-import 'package:aplicativo/app/shared/models/movie_model.dart';
+import 'package:aplicativo/app/shared/firestore/models/estudio_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class ContentScrollWidgetDetails extends StatelessWidget {
-  final List<String> images;
+  final List<Estudio> estudio;
   final String title;
   final double imageHeight;
   final double imageWidth;
-  final Movie movie;
 
   ContentScrollWidgetDetails({
-    required this.images,
+    required this.estudio,
     required this.title,
     required this.imageHeight,
     required this.imageWidth,
-    required this.movie,
   });
 
   @override
@@ -41,7 +39,7 @@ class ContentScrollWidgetDetails extends StatelessWidget {
           child: ListView.builder(
             padding: EdgeInsets.symmetric(horizontal: 15.0),
             scrollDirection: Axis.horizontal,
-            itemCount: images.length,
+            itemCount: estudio.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
                   margin: EdgeInsets.symmetric(
@@ -50,18 +48,12 @@ class ContentScrollWidgetDetails extends StatelessWidget {
                   ),
                   width: imageWidth,
                   decoration: new BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black54,
-                          offset: Offset(0.0, 4.0),
-                          blurRadius: 6.0, // changes position of shadow
-                        ),
-                      ],
+                      shape: BoxShape.rectangle,
                       image: new DecorationImage(
-                          fit: BoxFit.fill,
+                          fit: BoxFit.contain,
                           image: CachedNetworkImageProvider(
-                              movie.photoActors[index]))));
+                              "https://image.tmdb.org/t/p/original" +
+                                  estudio[index].imagem))));
             },
           ),
         ),

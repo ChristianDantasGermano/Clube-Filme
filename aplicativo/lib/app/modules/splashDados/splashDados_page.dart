@@ -1,6 +1,4 @@
 import 'package:aplicativo/app/modules/splashDados/splashDados_store.dart';
-import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
-import 'package:aplicativo/app/shared/firestore/models/slide_model.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';

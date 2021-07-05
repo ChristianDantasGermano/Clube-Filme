@@ -1,5 +1,6 @@
 import 'package:aplicativo/app/shared/firestore/controllers/firestore_controller.dart';
 import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
+import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
 import 'package:aplicativo/app/shared/firestore/models/slide_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -30,5 +31,13 @@ abstract class _HomeStoreBase with Store {
     List<Filme> filmer = firestore.filmesList!.data;
     filmer.sort((a, b) => b.notaCritico.compareTo(a.notaCritico));
     return filmer;
+  }
+
+  List<Pessoa> getAtor() {
+    return firestore.atoresList!.data;
+  }
+
+  List<Pessoa> getDiretor() {
+    return firestore.diretoresList!.data;
   }
 }
