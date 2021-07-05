@@ -1,5 +1,5 @@
 import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
-import 'package:aplicativo/app/shared/pages/view_movies_page.dart';
+import 'package:aplicativo/app/shared/pages/movie/more_movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
