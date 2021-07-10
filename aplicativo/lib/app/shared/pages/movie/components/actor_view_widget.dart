@@ -1,4 +1,4 @@
-import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
+import 'package:aplicativo/app/shared/Dados/models/pessoa_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

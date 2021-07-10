@@ -1,10 +1,10 @@
-import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
-import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
-import 'package:aplicativo/app/shared/firestore/models/slide_model.dart';
-import 'package:aplicativo/app/shared/firestore/repositories/atores_repository_interface.dart';
-import 'package:aplicativo/app/shared/firestore/repositories/diretores_repository_interface.dart';
-import 'package:aplicativo/app/shared/firestore/repositories/filmes_repository_interface.dart';
-import 'package:aplicativo/app/shared/firestore/repositories/slider_repository_interface.dart';
+import 'package:aplicativo/app/shared/Dados/models/filme_models.dart';
+import 'package:aplicativo/app/shared/Dados/models/pessoa_model.dart';
+import 'package:aplicativo/app/shared/Dados/models/slide_model.dart';
+import 'package:aplicativo/app/shared/Dados/repositories/atores_repository_interface.dart';
+import 'package:aplicativo/app/shared/Dados/repositories/diretores_repository_interface.dart';
+import 'package:aplicativo/app/shared/Dados/repositories/filmes_repository_interface.dart';
+import 'package:aplicativo/app/shared/Dados/repositories/slider_repository_interface.dart';
 import 'package:mobx/mobx.dart';
 
 part 'firestore_controller.g.dart';

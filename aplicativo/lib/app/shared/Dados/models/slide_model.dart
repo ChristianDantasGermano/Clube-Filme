@@ -1,4 +1,4 @@
-import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
+import 'package:aplicativo/app/shared/Dados/models/filme_models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Slide {

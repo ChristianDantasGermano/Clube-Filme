@@ -1,7 +1,7 @@
-import 'package:aplicativo/app/shared/firestore/controllers/firestore_controller.dart';
-import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
-import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
-import 'package:aplicativo/app/shared/firestore/models/slide_model.dart';
+import 'package:aplicativo/app/shared/Dados/controllers/firestore_controller.dart';
+import 'package:aplicativo/app/shared/Dados/models/filme_models.dart';
+import 'package:aplicativo/app/shared/Dados/models/pessoa_model.dart';
+import 'package:aplicativo/app/shared/Dados/models/slide_model.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 

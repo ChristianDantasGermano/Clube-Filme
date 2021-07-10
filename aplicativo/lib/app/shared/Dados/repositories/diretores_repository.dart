@@ -1,5 +1,5 @@
-import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
-import 'package:aplicativo/app/shared/firestore/repositories/diretores_repository_interface.dart';
+import 'package:aplicativo/app/shared/Dados/models/pessoa_model.dart';
+import 'package:aplicativo/app/shared/Dados/repositories/diretores_repository_interface.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DiretoresRepository implements IDiretoresRepository {

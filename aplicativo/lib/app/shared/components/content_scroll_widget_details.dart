@@ -1,4 +1,4 @@
-import 'package:aplicativo/app/shared/firestore/models/estudio_model.dart';
+import 'package:aplicativo/app/shared/Dados/models/estudio_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 

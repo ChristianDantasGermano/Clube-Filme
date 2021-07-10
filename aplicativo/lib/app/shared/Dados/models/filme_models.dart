@@ -1,8 +1,8 @@
-import 'package:aplicativo/app/shared/firestore/models/estudio_model.dart';
-import 'package:aplicativo/app/shared/firestore/models/imagem_model.dart';
-import 'package:aplicativo/app/shared/firestore/models/localizacao_model.dart';
-import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
-import 'package:aplicativo/app/shared/firestore/models/video_model.dart';
+import 'package:aplicativo/app/shared/Dados/models/estudio_model.dart';
+import 'package:aplicativo/app/shared/Dados/models/imagem_model.dart';
+import 'package:aplicativo/app/shared/Dados/models/localizacao_model.dart';
+import 'package:aplicativo/app/shared/Dados/models/pessoa_model.dart';
+import 'package:aplicativo/app/shared/Dados/models/video_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Filme {

@@ -1,5 +1,5 @@
-import 'package:aplicativo/app/shared/firestore/models/slide_model.dart';
-import 'package:aplicativo/app/shared/firestore/repositories/slider_repository_interface.dart';
+import 'package:aplicativo/app/shared/Dados/models/slide_model.dart';
+import 'package:aplicativo/app/shared/Dados/repositories/slider_repository_interface.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SlideRepository implements ISlideRepository {
