@@ -1,7 +1,7 @@
+import 'package:aplicativo/app/shared/Dados/models/filme_models.dart';
+import 'package:aplicativo/app/shared/Dados/models/pessoa_model.dart';
 import 'package:aplicativo/app/shared/components/circular_clipper_widget.dart';
 import 'package:aplicativo/app/shared/components/content_scroll_widget_details.dart';
-import 'package:aplicativo/app/shared/firestore/models/filme_models.dart';
-import 'package:aplicativo/app/shared/firestore/models/pessoa_model.dart';
 import 'package:aplicativo/app/shared/pages/movie/components/actor_view_widget.dart';
 import 'package:aplicativo/app/shared/pages/movie/components/comment_view_widget..dart';
 import 'package:aplicativo/app/shared/pages/movie/components/score_view_widget..dart';
