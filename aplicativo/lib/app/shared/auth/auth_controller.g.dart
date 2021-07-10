@@ -61,6 +61,14 @@ mixin _$AuthController on _AuthControllerBase, Store {
     return _$setUsuarioAsyncAction.run(() => super.setUsuario(value, google));
   }
 
+  final _$inicializarLoginAsyncAction =
+      AsyncAction('_AuthControllerBase.inicializarLogin');
+
+  @override
+  Future inicializarLogin() {
+    return _$inicializarLoginAsyncAction.run(() => super.inicializarLogin());
+  }
+
   final _$loginWithGoogleAsyncAction =
       AsyncAction('_AuthControllerBase.loginWithGoogle');
 
@@ -89,6 +97,17 @@ mixin _$AuthController on _AuthControllerBase, Store {
         name: '_AuthControllerBase.reloadUsuario');
     try {
       return super.reloadUsuario();
+    } finally {
+      _$_AuthControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setLogin() {
+    final _$actionInfo = _$_AuthControllerBaseActionController.startAction(
+        name: '_AuthControllerBase.setLogin');
+    try {
+      return super.setLogin();
     } finally {
       _$_AuthControllerBaseActionController.endAction(_$actionInfo);
     }

@@ -23,27 +23,37 @@ abstract class _AuthControllerBase with Store {
 
   @action
   setUsuario(Usuario? value, User? google) async {
+    print("Usuario");
     usuario = value;
     usuarioGoogle = google;
-    print(usuarioGoogle);
+    if (usuarioGoogle != null) {
+      print("Google: " + usuarioGoogle.toString());
+    }
 
-    if (usuario == null && usuarioGoogle != null) {
-      await _authRepository.preencherUsuario();
-      usuario = _authRepository.getUsuario();
-      status = AuthStatus.login;
+    if (usuarioGoogle == null) {
+      status = AuthStatus.logoff;
     } else if ((usuario == null || usuario?.email == "") &&
         usuarioGoogle == null) {
       status = AuthStatus.logoff;
+    } else if (usuario == null && usuarioGoogle != null) {
+      await _authRepository.preencherUsuario();
+      usuario = _authRepository.getUsuario();
+      status = AuthStatus.login;
     } else {
       status = AuthStatus.login;
     }
-    print(usuario?.email);
-    print(usuario?.imagem);
-    print(usuario?.nome);
+
+    if (usuario != null) {
+      print("Email: " + usuario!.email);
+      print("Imagem: " + usuario!.imagem);
+      print("Nome: " + usuario!.nome);
+    }
+    print("AuthControllerStatus" + status.toString());
   }
 
-  _AuthControllerBase() {
-    setUsuario(
+  @action
+  inicializarLogin() async {
+    await setUsuario(
         _authRepository.getUsuario(), _authRepository.getUsuarioGoogle());
   }
 
@@ -62,6 +72,11 @@ abstract class _AuthControllerBase with Store {
   @action
   reloadUsuario() {
     _authRepository.getUsuario();
+  }
+
+  @action
+  setLogin() {
+    status = AuthStatus.login;
   }
 }
 

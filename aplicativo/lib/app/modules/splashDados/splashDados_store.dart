@@ -11,6 +11,11 @@ class SplashDadosStore = _SplashDadosStoreBase with _$SplashDadosStore;
 
 abstract class _SplashDadosStoreBase with Store {
   FirestoreController firestore = Modular.get();
+
+  _SplashDadosStoreBase() {
+    print("Splash Dados");
+  }
+
   @action
   void start() {
     Modular.to.pushReplacementNamed('/start');

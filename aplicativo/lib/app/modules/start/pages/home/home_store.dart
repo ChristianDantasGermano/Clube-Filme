@@ -22,7 +22,7 @@ abstract class _HomeStoreBase with Store {
   }
 
   List<Filme> getCriticas() {
-    List<Filme> filme = firestore.filmesList!.data;
+    List<Filme> filme = firestore.filmesList?.data;
     filme.sort((a, b) => a.notaCritico.compareTo(b.notaCritico));
     return filme;
   }

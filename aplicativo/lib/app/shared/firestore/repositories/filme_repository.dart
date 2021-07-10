@@ -9,8 +9,11 @@ class FilmeRepository implements IFilmeRepository {
 
   @override
   Stream<List<Filme>> getTodos() {
-    return firestore.collection('Filmes').snapshots().map((query) {
+    print("GetTodos Filmes");
+    return firestore.collection("Filmes").snapshots().map((query) {
+      print("Query");
       return query.docs.map((doc) {
+        print("Documento" + doc.toString());
         return Filme.fromDocument(doc);
       }).toList();
     });

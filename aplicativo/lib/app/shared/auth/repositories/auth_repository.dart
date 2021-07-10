@@ -11,7 +11,6 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<UserCredential> getGoogleLogin() async {
-    print("começo do get google login");
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
@@ -26,13 +25,9 @@ class AuthRepository implements IAuthRepository {
     );
 
     // Once signed in, return the UserCredential
-    print("Antes da função sigInCredentials");
     var res = await _auth.signInWithCredential(credential);
-    print("Antes do Cadastrar Firebase");
     await cadastrarFirebase();
-    print("Antes do Preencher Usuario");
     await preencherUsuario();
-    print("Antes de retornar credenciais");
     return res;
   }
 
@@ -71,7 +66,6 @@ class AuthRepository implements IAuthRepository {
 
   Future preencherUsuario() async {
     final idUser = _auth.currentUser!.uid.toString();
-    print("IDdo merdinha " + idUser);
     CollectionReference usersRemote =
         FirebaseFirestore.instance.collection('Usuarios');
     await usersRemote
@@ -80,7 +74,6 @@ class AuthRepository implements IAuthRepository {
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         user = Usuario?.fromDocument(documentSnapshot);
-        print('Foda' + user.toString());
       }
     });
   }

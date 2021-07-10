@@ -10,6 +10,7 @@ class DiretoresRepository implements IDiretoresRepository {
   @override
   Stream<List<Pessoa>> getTodos() {
     return firestore.collection('Diretores').snapshots().map((query) {
+      print("Query diretor");
       return query.docs.map((doc) {
         return Pessoa.fromDocument(doc);
       }).toList();
