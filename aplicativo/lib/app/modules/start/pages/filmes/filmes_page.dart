@@ -13,6 +13,7 @@ class FilmesPage extends StatefulWidget {
 class FilmesPageState extends ModularState<FilmesPage, FilmesStore> {
   @override
   Widget build(BuildContext context) {
+    print("Filmes Page");
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(

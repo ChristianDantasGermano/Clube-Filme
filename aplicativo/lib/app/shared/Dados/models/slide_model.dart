@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Slide {
   final List<DocumentReference> reference;
+  
+  //FlutterConfig.get('API_KEY');
 
   Slide({required this.reference});
 

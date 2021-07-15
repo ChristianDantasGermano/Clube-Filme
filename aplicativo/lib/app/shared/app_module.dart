@@ -41,4 +41,5 @@ class AppModule extends Module {
     ModuleRoute('/start', module: StartModule()),
     ModuleRoute('/login', module: LoginModule()),
   ];
+
 }
