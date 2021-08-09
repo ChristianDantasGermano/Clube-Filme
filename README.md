@@ -1,8 +1,8 @@
-![image](https://user-images.githubusercontent.com/51031714/128783443-7aba0b42-363c-4b11-b7e9-204d7ecbce90.png)
+<h1 align="center">Clube Filme</h1>
 
 A new Flutter project.
 
-## Getting Started
+## Proposta
 
 This project is a starting point for a Flutter application.
 
