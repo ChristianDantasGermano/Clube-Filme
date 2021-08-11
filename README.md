@@ -1,6 +1,6 @@
 <h1 align="center">Clube Filme</h1>
 
-<p align="center">�📱 Aplicativo para promover filmes 📱</p>
+<p align="center">📱 Aplicativo para promover filmes 📱</p>
 
 ## Proposta
 
