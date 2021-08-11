@@ -1,6 +1,6 @@
 <h1 align="center">Clube Filme</h1>
 
-A new Flutter project.
+<p align="center">🚀 lib para construir interfaces do usuário com componentes reutilizáveis</p>
 
 ## Proposta
 
