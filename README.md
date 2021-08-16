@@ -32,7 +32,7 @@ Este aplicativo consome uma API para disponibilizar um grande acervo de filmes e
 
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Android_Studio_Icon_%282014-2019%29.svg/1200px-Android_Studio_Icon_%282014-2019%29.svg.png" width="20px" title="Android Studio - logo"> [Android Studio](https://developer.android.com/studio/): Ferramenta utilizada para debug da aplicação.
 
-- <img src="https://res.cloudinary.com/postman/image/upload/t_team_logo/v1/team/2893aede23f01bfcbd2319326bc96a6ed0524eba759745ed6d73405a3a8b67a8" width="20px" title="Postman - logo"> [Postman](https://developer.android.com/studio/): Ferramenta utilizada para auxiliar nos testes da API.
+- <img src="https://res.cloudinary.com/postman/image/upload/t_team_logo/v1/team/2893aede23f01bfcbd2319326bc96a6ed0524eba759745ed6d73405a3a8b67a8" width="20px" title="Postman - logo"> [Postman](https://www.postman.com/): Ferramenta utilizada para auxiliar nos testes da API.
 
 <div id='desenvolvimento'/>
 
