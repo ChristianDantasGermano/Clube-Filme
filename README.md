@@ -26,27 +26,27 @@ Este aplicativo consome uma API para disponibilizar um grande acervo de filmes e
 
 ### Gerenciamento
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Figma-1-logo.png" width="20px" title="Figma - logo"> [Figma](https://www.figma.com/): Framework utilizado para a prototipação da aplicação, possibilitando uma melhor visualização das ideias iniciais das telas.
+- <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Figma-1-logo.png" width="20px" title="Figma - logo"> [Figma](https://www.figma.com/): Framework utilizado para a prototipação da aplicação, possibilitando uma melhor visualização das ideias iniciais das telas.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1024px-Visual_Studio_Code_1.35_icon.svg.png" width="20px" title="Visual Studio Code - logo"> [Visual Studio Code](https://code.visualstudio.com/): Plataforma utilizada para a interface de desenvolvimento (IDE) do projeto.
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1024px-Visual_Studio_Code_1.35_icon.svg.png" width="20px" title="Visual Studio Code - logo"> [Visual Studio Code](https://code.visualstudio.com/): Plataforma utilizada para a interface de desenvolvimento (IDE) do projeto.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Android_Studio_Icon_%282014-2019%29.svg/1200px-Android_Studio_Icon_%282014-2019%29.svg.png" width="20px" title="Android Studio - logo"> [Android Studio](https://developer.android.com/studio/): Ferramenta utilizada para debug da aplicação.
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Android_Studio_Icon_%282014-2019%29.svg/1200px-Android_Studio_Icon_%282014-2019%29.svg.png" width="20px" title="Android Studio - logo"> [Android Studio](https://developer.android.com/studio/): Ferramenta utilizada para debug da aplicação.
 
-<img src="https://res.cloudinary.com/postman/image/upload/t_team_logo/v1/team/2893aede23f01bfcbd2319326bc96a6ed0524eba759745ed6d73405a3a8b67a8" width="20px" title="Postman - logo"> [Postman](https://developer.android.com/studio/): Ferramenta utilizada para auxiliar nos testes da API.
+- <img src="https://res.cloudinary.com/postman/image/upload/t_team_logo/v1/team/2893aede23f01bfcbd2319326bc96a6ed0524eba759745ed6d73405a3a8b67a8" width="20px" title="Postman - logo"> [Postman](https://developer.android.com/studio/): Ferramenta utilizada para auxiliar nos testes da API.
 
 <div id='desenvolvimento'/>
 
 ### Desenvolvimento
 
-[<img src='https://img.shields.io/badge/Flutter-43853D?style=for-the-badge&logo=flutter&logoColor=blue&labelColor=gray&color=gray' title="Flutter - logo">](https://flutter.dev/) Framework utilizado para a criação do aplicativo.
+- [<img src='https://img.shields.io/badge/Flutter-43853D?style=for-the-badge&logo=flutter&logoColor=blue&labelColor=gray&color=gray' title="Flutter - logo">](https://flutter.dev/) Framework utilizado para a criação do aplicativo.
 
-[<img src='https://img.shields.io/badge/Dart-43853D?style=for-the-badge&logo=dart&logoColor=blue&labelColor=gray&color=gray' title="Dart - logo">](https://dart.dev/) Linguagem de programação utilizada.
+- [<img src='https://img.shields.io/badge/Dart-43853D?style=for-the-badge&logo=dart&logoColor=blue&labelColor=gray&color=gray' title="Dart - logo">](https://dart.dev/) Linguagem de programação utilizada.
 
 <div id='api'/>
 
 ### API
 
-<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" width="100px" title="Postman - logo"> [The Movie Database](https://developers.themoviedb.org/3/getting-started/introduction): Utilizada para preencher o aplicativos com os filmes e seus dados detalhados.
+- <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" width="100px" title="Postman - logo"> [The Movie Database](https://developers.themoviedb.org/3/getting-started/introduction): Utilizada para preencher o aplicativos com os filmes e seus dados detalhados.
 
 
 ## 👨‍👩‍👧‍👧 Equipe de Desenvolvimento
